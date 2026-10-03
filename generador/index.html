@@ -13,6 +13,7 @@
     --text: hsl(220 25% 92%);
     --muted: hsl(220 12% 62%);
     --gold: #c99a3a;
+    --gold-2: #a87d28;
     --green: #4ade80;
     --red: #f87171;
   }
@@ -20,62 +21,95 @@
   body {
     font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
     background: var(--bg); color: var(--text);
-    min-height: 100vh; display: flex; flex-direction: column; align-items: center;
-    padding: 2rem 1rem; gap: 1.5rem;
+    min-height: 100vh; padding: 1.5rem 1rem 3rem;
   }
+  .wrap { max-width: 1000px; margin: 0 auto; display: flex; flex-direction: column; gap: 1.25rem; }
   .logo { display: flex; align-items: center; gap: 0.75rem; }
   .logo-box {
-    width: 44px; height: 44px; border-radius: 10px;
+    width: 42px; height: 42px; border-radius: 10px;
     background: linear-gradient(135deg, #c99a3a, #8b6914);
     display: flex; align-items: center; justify-content: center;
-    font-weight: 800; color: #1a1a2e; font-size: 1.1rem;
+    font-weight: 800; color: #1a1a2e; font-size: 1.05rem;
   }
-  .logo-text { font-size: 0.75rem; color: var(--muted); letter-spacing: 0.1em; }
-  h1 { font-size: 1.4rem; font-weight: 700; }
-  .subtitle { color: var(--muted); font-size: 0.85rem; }
+  .logo-text { font-size: 0.72rem; color: var(--muted); letter-spacing: 0.1em; }
+  .head { display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; flex-wrap: wrap; }
+  h1 { font-size: 1.5rem; display: flex; align-items: center; gap: 0.5rem; }
+  .shield { font-size: 1.3rem; }
+  .sub { color: var(--muted); margin-top: 0.25rem; font-size: 0.88rem; }
+  .badge-total {
+    border: 1px solid var(--gold); color: var(--gold); border-radius: 99px;
+    padding: 0.4rem 1rem; font-size: 1rem; font-weight: 600; white-space: nowrap;
+  }
+  .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.9rem; }
+  .stat { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 0.9rem 1.1rem; }
+  .stat-label { color: var(--muted); font-size: 0.78rem; }
+  .stat-num { font-size: 1.6rem; font-weight: 700; margin-top: 0.15rem; }
   .card {
     background: var(--card); border: 1px solid var(--border); border-radius: 14px;
-    padding: 1.75rem; width: 100%; max-width: 520px; display: flex; flex-direction: column; gap: 1.1rem;
+    padding: 1.4rem; display: flex; flex-direction: column; gap: 1rem;
   }
-  .row { display: flex; gap: 0.75rem; }
-  .field { flex: 1; display: flex; flex-direction: column; gap: 0.4rem; }
-  label { font-size: 0.8rem; color: var(--muted); font-weight: 500; }
-  input {
+  .card-title { font-weight: 600; display: flex; align-items: center; gap: 0.45rem; }
+  .card-sub { color: var(--muted); font-size: 0.82rem; margin-top: 0.15rem; }
+  .grid-form { display: grid; grid-template-columns: 160px 1fr 1fr auto; gap: 0.8rem; align-items: end; }
+  @media (max-width: 760px) { .grid-form { grid-template-columns: 1fr 1fr; } .stats { grid-template-columns: 1fr; } }
+  .field { display: flex; flex-direction: column; gap: 0.35rem; }
+  label { font-size: 0.78rem; color: var(--muted); font-weight: 500; }
+  input, select {
     background: var(--bg); border: 1px solid var(--border); border-radius: 8px;
-    color: var(--text); padding: 0.65rem 0.8rem; font-size: 0.95rem; outline: none;
+    color: var(--text); padding: 0.55rem 0.7rem; font-size: 0.9rem; outline: none; width: 100%;
   }
-  input:focus { border-color: var(--gold); }
-  input[type="number"] { width: 110px; }
+  input:focus, select:focus { border-color: var(--gold); }
   button {
-    background: linear-gradient(135deg, #c99a3a, #a87d28); border: none; border-radius: 8px;
-    color: #1a1a2e; font-weight: 700; padding: 0.75rem 1.5rem; cursor: pointer;
-    font-size: 0.95rem; transition: opacity 0.15s;
+    background: linear-gradient(135deg, var(--gold), var(--gold-2)); border: none; border-radius: 8px;
+    color: #1a1a2e; font-weight: 700; padding: 0.6rem 1.3rem; cursor: pointer; font-size: 0.9rem;
   }
-  button:hover { opacity: 0.9; }
-  button:disabled { opacity: 0.5; cursor: wait; }
-  button.ghost {
+  button:hover { opacity: 0.92; }
+  button:disabled { opacity: 0.45; cursor: wait; }
+  .ghost {
     background: transparent; border: 1px solid var(--border); color: var(--muted);
-    font-weight: 500; padding: 0.5rem 0.9rem; font-size: 0.8rem;
+    font-weight: 500; padding: 0.35rem 0.8rem; font-size: 0.78rem;
   }
-  .status { font-size: 0.85rem; min-height: 1.2rem; }
+  .icon-btn {
+    background: transparent; border: 1px solid var(--border); color: var(--muted);
+    padding: 0.3rem 0.55rem; font-size: 0.95rem; border-radius: 7px; line-height: 1;
+  }
+  .icon-btn:hover { color: var(--text); }
+  .icon-btn.danger:hover { color: var(--red); border-color: var(--red); }
+  .status { font-size: 0.84rem; min-height: 1.2rem; }
   .status.err { color: var(--red); }
   .status.ok { color: var(--green); }
+  .tbl-wrap { overflow-x: auto; }
   table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
-  th { text-align: left; color: var(--muted); font-weight: 500; padding: 0.4rem 0.5rem; border-bottom: 1px solid var(--border); }
-  td { padding: 0.5rem; border-bottom: 1px solid var(--border); }
-  code {
-    background: var(--bg); padding: 0.2rem 0.5rem; border-radius: 6px;
-    font-family: ui-monospace, monospace; color: var(--gold); font-size: 0.9rem;
+  th { text-align: left; color: var(--muted); font-weight: 500; padding: 0.45rem 0.5rem; border-bottom: 1px solid var(--border); white-space: nowrap; }
+  td { padding: 0.5rem; border-bottom: 1px solid var(--border); vertical-align: middle; }
+  tr.used-row { opacity: 0.45; }
+  code.c {
+    background: var(--bg); padding: 0.18rem 0.5rem; border-radius: 6px;
+    font-family: ui-monospace, monospace; color: var(--gold); font-size: 0.86rem;
     cursor: pointer; white-space: nowrap;
   }
-  .hint { color: var(--muted); font-size: 0.75rem; }
-  .badge { display: inline-block; padding: 0.1rem 0.5rem; border-radius: 99px; font-size: 0.7rem; font-weight: 600; }
-  .badge.free { background: hsl(150 60% 20%); color: var(--green); }
-  .badge.used { background: hsl(0 40% 20%); color: var(--red); }
-  #tokenRow { display: flex; gap: 0.5rem; align-items: flex-end; }
+  .pill { display: inline-block; padding: 0.1rem 0.55rem; border-radius: 99px; font-size: 0.72rem; font-weight: 600; }
+  .pill.free { background: hsl(150 50% 16%); color: var(--green); }
+  .pill.used { background: hsl(0 30% 18%); color: var(--red); }
+  .howto { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; font-size: 0.84rem; }
+  @media (max-width: 700px) { .howto { grid-template-columns: 1fr; } }
+  .howto h4 { margin-bottom: 0.4rem; }
+  .howto li { color: var(--muted); margin-left: 1.1rem; margin-top: 0.2rem; }
+  .howto code { background: var(--bg); padding: 0 0.3rem; border-radius: 4px; color: var(--gold); }
+  .empty { text-align: center; padding: 1.6rem; color: var(--muted); }
+  .toast {
+    position: fixed; bottom: 1.2rem; left: 50%; transform: translateX(-50%);
+    background: hsl(150 40% 16%); border: 1px solid var(--green); color: var(--green);
+    padding: 0.7rem 1.4rem; border-radius: 10px; font-size: 0.9rem; font-weight: 600;
+    opacity: 0; transition: opacity 0.25s; pointer-events: none; z-index: 99;
+  }
+  .toast.show { opacity: 1; }
+  .toast.err { background: hsl(0 40% 16%); border-color: var(--red); color: var(--red); }
+  .actions { display: flex; gap: 0.35rem; justify-content: flex-end; }
 </style>
 </head>
 <body>
+<div class="wrap">
   <div class="logo">
     <div class="logo-box">CF</div>
     <div>
@@ -83,74 +117,168 @@
       <div class="logo-text">TU DINERO, CLARO</div>
     </div>
   </div>
-  <h1>Generador de Licencias</h1>
-  <div class="subtitle">Herramienta interna — CAP INDUSTRIES. Los códigos se insertan directamente en el backend.</div>
+
+  <div class="head">
+    <div>
+      <h1><span class="shield">&#128737;&#65039;</span> Generador de Licencias</h1>
+      <p class="sub">Licencia &uacute;nica — Acceso Completo ($10 USD)</p>
+    </div>
+    <span class="badge-total" id="badgeTotal">0 disponibles</span>
+  </div>
+
+  <div class="stats">
+    <div class="stat"><div class="stat-label">Total Generadas</div><div class="stat-num" id="stTotal">0</div></div>
+    <div class="stat"><div class="stat-label">Disponibles</div><div class="stat-num" id="stFree" style="color:var(--green)">0</div></div>
+    <div class="stat"><div class="stat-label">Usadas</div><div class="stat-num" id="stUsed" style="color:var(--red)">0</div></div>
+  </div>
 
   <div class="card">
-    <div class="field" id="tokenRow" style="flex-direction:column">
-      <label for="adminToken">Token de administrador</label>
-      <input type="password" id="adminToken" placeholder="cfadm_..." autocomplete="off">
-      <div class="hint" id="tokenHint">Se guarda solo en este navegador (localStorage).</div>
+    <div>
+      <div class="card-title">&#128273; Generar Nuevas Licencias</div>
+      <div class="card-sub">Cada licencia desbloquea acceso completo a Cap Finanzas. Se insertan directo en el backend (listas para activar).</div>
     </div>
-    <div class="row">
+    <div class="grid-form">
       <div class="field">
         <label for="count">Cantidad</label>
-        <input type="number" id="count" value="1" min="1" max="100">
+        <select id="count">
+          <option value="1">1 licencia</option>
+          <option value="5">5 licencias</option>
+          <option value="10">10 licencias</option>
+          <option value="25">25 licencias</option>
+          <option value="50">50 licencias</option>
+        </select>
       </div>
-      <div class="field" style="flex:2">
+      <div class="field">
+        <label for="name">Nombre del cliente (opcional)</label>
+        <input type="text" id="name" placeholder="Ej: Juan P&eacute;rez">
+      </div>
+      <div class="field">
         <label for="email">Email del cliente (opcional)</label>
         <input type="email" id="email" placeholder="cliente@email.com">
       </div>
+      <button id="btnGen">&#65291; Generar</button>
     </div>
-    <button id="btnGen">Generar licencias</button>
+    <div class="field">
+      <label for="adminToken">Token de administrador (se guarda en este navegador)</label>
+      <input type="password" id="adminToken" placeholder="cfadm_..." autocomplete="off">
+    </div>
     <div class="status" id="status"></div>
   </div>
 
   <div class="card">
-    <div style="display:flex;justify-content:space-between;align-items:center">
-      <strong>Licencias generadas</strong>
-      <button class="ghost" id="btnCsv">Exportar CSV</button>
+    <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:0.5rem">
+      <div>
+        <div class="card-title">Licencias Generadas</div>
+        <div class="card-sub">Historial de todos los c&oacute;digos creados</div>
+      </div>
+      <button class="ghost" id="btnCsv" style="display:none">&#11015; Exportar CSV</button>
     </div>
-    <table id="tbl">
-      <thead><tr><th>Código</th><th>Email</th><th>Estado</th><th>Creada</th></tr></thead>
-      <tbody id="tbody"></tbody>
-    </table>
-    <div class="hint">Click en un código para copiarlo. Los códigos quedan activables de inmediato (license-activate).</div>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>C&oacute;digo</th><th>Fecha</th><th>Cliente</th><th>Email</th><th>Estado</th><th style="text-align:right">Acciones</th></tr></thead>
+        <tbody id="tbody"></tbody>
+      </table>
+    </div>
+    <div class="status" id="sendStatus"></div>
   </div>
+
+  <div class="card">
+    <div class="card-title">&#128214; C&oacute;mo Usar</div>
+    <div class="howto">
+      <div>
+        <h4>Formato de C&oacute;digos</h4>
+        <ul>
+          <li><code>CF-FULL-XXXX-XXXXX</code> — Acceso Completo</li>
+          <li>El &uacute;ltimo car&aacute;cter es un d&iacute;gito de verificaci&oacute;n</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Flujo de Venta</h4>
+        <ol>
+          <li>Cliente paga $10 USD por PayPal</li>
+          <li>Gener&aacute;s la licencia ac&aacute; (queda activable al instante)</li>
+          <li>Cliente activa en la app con el c&oacute;digo</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="toast" id="toast"></div>
 
 <script>
   const API = "https://vpxqgxehmealrwbwmicm.supabase.co/functions/v1/admin-generate-licenses";
+  const EMAIL_API = "https://vpxqgxehmealrwbwmicm.supabase.co/functions/v1/send-license-email";
+  const ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZweHFneGVobWVhbHJ3YndtaWNtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTAwMTk2NzgsImV4cCI6MjEwNTU5NTY3OH0.zF_KC2W_HUaRa1XUKvToOPZSPsa5WzfcFD0zwg6Xqw8";
   const $ = id => document.getElementById(id);
   const saved = localStorage.getItem("cf_admin_token");
-  if (saved) { $("adminToken").value = saved; $("tokenHint").textContent = "Token cargado desde este navegador."; }
+  if (saved) $("adminToken").value = saved;
+  let licenses = JSON.parse(localStorage.getItem("cf_gen_history_v2") || "[]");
 
-  let history = JSON.parse(localStorage.getItem("cf_gen_history") || "[]");
+  function toast(msg, isErr = false) {
+    const t = $("toast");
+    t.textContent = msg; t.className = "toast show" + (isErr ? " err" : "");
+    setTimeout(() => t.className = "toast", 2600);
+  }
 
   function render() {
-    $("tbody").innerHTML = history.map(l => `
-      <tr>
-        <td><code onclick="navigator.clipboard.writeText('${l.code}');this.style.color='#4ade80'">${l.code}</code></td>
+    const free = licenses.filter(l => !l.is_used).length;
+    $("stTotal").textContent = licenses.length;
+    $("stFree").textContent = free;
+    $("stUsed").textContent = licenses.length - free;
+    $("badgeTotal").textContent = free + " disponibles";
+    $("btnCsv").style.display = licenses.length ? "" : "none";
+    $("tbody").innerHTML = licenses.map((l, i) => `
+      <tr class="${l.is_used ? "used-row" : ""}">
+        <td><code class="c" title="Click para copiar" onclick="copyCode(${i})">${l.code}</code></td>
+        <td>${new Date(l.created_at).toLocaleDateString("es-UY")}</td>
+        <td>${l.customer_name || "—"}</td>
         <td>${l.customer_email || "—"}</td>
-        <td><span class="badge ${l.is_used ? "used" : "free"}">${l.is_used ? "usada" : "libre"}</span></td>
-        <td>${new Date(l.created_at).toLocaleString("es-UY")}</td>
-      </tr>`).join("") || '<tr><td colspan="4" style="color:var(--muted);text-align:center;padding:1.5rem">Sin licencias generadas aún</td></tr>';
+        <td><span class="pill ${l.is_used ? "used" : "free"}">${l.is_used ? "Usada" : "Disponible"}</span></td>
+        <td><div class="actions">
+          <button class="icon-btn" title="Copiar c&oacute;digo" onclick="copyCode(${i})">&#10696;</button>
+          <button class="icon-btn" title="Enviar por email" onclick="sendEmail(${i})" ${l.customer_email && !l.is_used ? "" : "disabled"}>&#9993;</button>
+          <button class="icon-btn" title="Marcar como usada" onclick="markUsed(${i})" ${l.is_used ? "disabled" : ""}>&#10003;</button>
+          <button class="icon-btn danger" title="Eliminar del historial" onclick="delRow(${i})">&#128465;</button>
+        </div></td>
+      </tr>`).join("") || '<tr><td colspan="6" class="empty">No hay licencias generadas a&uacute;n — us&aacute; el formulario de arriba</td></tr>';
   }
 
-  async function loadExisting() {
-    // Las licencias existentes en el backend (solo las creadas con este token no se pueden listar sin otra function — mostramos solo el historial local)
-    render();
+  function persist() { localStorage.setItem("cf_gen_history_v2", JSON.stringify(licenses)); render(); }
+
+  function copyCode(i) {
+    navigator.clipboard.writeText(licenses[i].code);
+    toast("C&oacute;digo copiado: " + licenses[i].code);
   }
+
+  async function sendEmail(i) {
+    const l = licenses[i];
+    const st = $("sendStatus");
+    st.className = "status"; st.textContent = "Enviando email a " + l.customer_email + "…";
+    try {
+      const res = await fetch(EMAIL_API, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "Authorization": "Bearer " + ANON_KEY },
+        body: JSON.stringify({ email: l.customer_email, licenseCode: l.code, licenseType: l.license_type }),
+      });
+      if (res.ok) { st.textContent = "\u2713 Email enviado a " + l.customer_email; st.className = "status ok"; }
+      else { const d = await res.json().catch(() => ({})); st.textContent = "Error al enviar: " + (d.error || res.status); st.className = "status err"; }
+    } catch (e) { st.textContent = "Error de red: " + e.message; st.className = "status err"; }
+  }
+
+  function markUsed(i) { licenses[i].is_used = true; persist(); toast("Marcada como usada: " + licenses[i].code); }
+  function delRow(i) { licenses.splice(i, 1); persist(); toast("Eliminada del historial"); }
 
   $("btnGen").addEventListener("click", async () => {
     const token = $("adminToken").value.trim();
     const count = parseInt($("count").value, 10);
     const email = $("email").value.trim() || undefined;
+    const name = $("name").value.trim() || undefined;
     const st = $("status");
     st.className = "status";
-    if (!token) { st.textContent = "Poné el token de administrador."; st.className = "status err"; return; }
+    if (!token) { st.textContent = "Pon&eacute; el token de administrador."; st.className = "status err"; return; }
     localStorage.setItem("cf_admin_token", token);
     $("btnGen").disabled = true;
-    st.textContent = "Generando…";
+    st.textContent = "Generando " + count + " licencia(s)…";
     try {
       const res = await fetch(API, {
         method: "POST",
@@ -162,29 +290,29 @@
         st.textContent = data.error === "unauthorized" ? "Token incorrecto." : "Error: " + (data.error || res.status);
         st.className = "status err";
       } else {
-        history = [...data.licenses, ...history];
-        localStorage.setItem("cf_gen_history", JSON.stringify(history));
-        st.textContent = `✓ ${data.licenses.length} licencia(s) generada(s) e insertada(s) en el backend — listas para activar.`;
+        const withName = data.licenses.map(l => ({ ...l, customer_name: name }));
+        licenses = [...withName, ...licenses];
+        persist();
+        st.textContent = "\u2713 " + data.licenses.length + " licencia(s) generada(s) e insertada(s) en el backend — listas para activar.";
         st.className = "status ok";
-        render();
+        toast(data.licenses.length + " licencia(s) generada(s) \u2713");
+        $("name").value = ""; $("email").value = "";
       }
-    } catch (e) {
-      st.textContent = "Error de red: " + e.message;
-      st.className = "status err";
-    }
+    } catch (e) { st.textContent = "Error de red: " + e.message; st.className = "status err"; }
     $("btnGen").disabled = false;
   });
 
   $("btnCsv").addEventListener("click", () => {
-    const csv = "code,license_type,customer_email,is_used,created_at\n" +
-      history.map(l => `${l.code},${l.license_type},${l.customer_email},${l.is_used},${l.created_at}`).join("\n");
+    const csv = "codigo,fecha,nombre_cliente,email,tipo,usada\n" +
+      licenses.map(l => `${l.code},${new Date(l.created_at).toLocaleDateString("es-UY")},${l.customer_name || ""},${l.customer_email},${l.license_type},${l.is_used ? "Si" : "No"}`).join("\n");
     const a = document.createElement("a");
-    a.href = URL.createObjectURL(new Blob([csv], { type: "text/csv" }));
-    a.download = `licencias_${new Date().toISOString().slice(0,10)}.csv`;
+    a.href = URL.createObjectURL(new Blob(["\ufeff" + csv], { type: "text/csv;charset=utf-8" }));
+    a.download = `licencias-cap-finanzas-${new Date().toISOString().split("T")[0]}.csv`;
     a.click();
+    toast("CSV exportado: " + licenses.length + " licencias");
   });
 
-  loadExisting();
+  render();
 </script>
 </body>
 </html>
